@@ -100,9 +100,11 @@ def patch_settings(config_data):
     else:
         original += "STATIC_ROOT = os.path.join(BASE_DIR, 'static')\n"
     if original.find('STATICFILES_DIRS') > -1:
-        original = original.replace(data.STATICFILES_DEFAULT, """STATICFILES_DEFAULT = (
+        original = original.replace(data.STATICFILES_DEFAULT, """
+STATICFILES_DEFAULT = (
     os.path.join(BASE_DIR, '%s', 'static'),
-)""" % config_data.project_name)
+)
+""" % config_data.project_name)
     else:
         original += "STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')\n"
     original = original.replace("# -*- coding: utf-8 -*-\n", "")
